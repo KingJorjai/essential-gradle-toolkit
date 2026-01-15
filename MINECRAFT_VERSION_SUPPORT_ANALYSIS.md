@@ -1,45 +1,45 @@
-# Análisis de Soporte para Nuevas Versiones de Minecraft
+# Minecraft Version Support Analysis
 
-**Fecha:** 15 de enero de 2026  
-**Versión del toolkit:** 0.6.10
+**Date:** January 15, 2026  
+**Toolkit Version:** 0.6.10
 
-## Resumen Ejecutivo
+## Executive Summary
 
-Este documento analiza el estado actual del soporte de versiones de Minecraft en Essential Gradle Toolkit y proporciona un plan para agregar soporte para nuevas versiones.
+This document analyzes the current state of Minecraft version support in Essential Gradle Toolkit and provides a plan for adding support for new versions.
 
-## Estado Actual
+## Current Status
 
-### Versión Máxima Soportada
+### Maximum Supported Version
 
-**Minecraft 1.21.8** (código interno: `12108`)
+**Minecraft 1.21.8** (internal code: `12108`)
 
-Esta es la versión más reciente actualmente soportada en el toolkit, con soporte completo para:
-- **Fabric** con Yarn mappings: `1.21.8+build.1:v2`
+This is the most recent version currently supported in the toolkit, with full support for:
+- **Fabric** with Yarn mappings: `1.21.8+build.1:v2`
 - **Forge**: `1.21.8-58.0.0`
 - **NeoForge**: `21.8.5-beta`
 
-### Sistema de Codificación de Versiones
+### Version Encoding System
 
-El toolkit utiliza un sistema de codificación numérica para las versiones de Minecraft:
+The toolkit uses a numeric encoding system for Minecraft versions:
 
 ```
-código = mcMajor * 10000 + mcMinor * 100 + mcPatch
+code = mcMajor * 10000 + mcMinor * 100 + mcPatch
 ```
 
-**Ejemplos:**
+**Examples:**
 - Minecraft 1.8.9 → `10809`
 - Minecraft 1.21.8 → `12108`
-- Minecraft 1.22.0 → `12200` (hipotético)
+- Minecraft 1.22.0 → `12200` (hypothetical)
 
-### Loaders Soportados
+### Supported Loaders
 
-1. **Fabric** - Todas las versiones desde 1.14.4
-2. **Forge** - Todas las versiones desde 1.7.10
-3. **NeoForge** - Versiones modernas desde 1.20.2
+1. **Fabric** - All versions since 1.14.4
+2. **Forge** - All versions since 1.7.10
+3. **NeoForge** - Modern versions since 1.20.2
 
-### Rangos de Versiones Actualmente Soportados
+### Currently Supported Version Ranges
 
-#### Versiones Legacy (< 1.14.0)
+#### Legacy Versions (< 1.14.0)
 - 1.7.10 (Forge)
 - 1.8.0, 1.8.9 (Forge)
 - 1.9.4 (Forge)
@@ -47,91 +47,91 @@ código = mcMajor * 10000 + mcMinor * 100 + mcPatch
 - 1.11.0, 1.11.2 (Forge)
 - 1.12.0, 1.12.1, 1.12.2 (Forge)
 
-#### Versiones Modernas (≥ 1.14.0)
-- Serie 1.14: 1.14.4
-- Serie 1.15: 1.15.2
-- Serie 1.16: 1.16.1, 1.16.2, 1.16.4, 1.16.5
-- Serie 1.17: 1.17.0, 1.17.1
-- Serie 1.18: 1.18.1, 1.18.2
-- Serie 1.19: 1.19.0, 1.19.1, 1.19.2, 1.19.3, 1.19.4
-- Serie 1.20: 1.20.0, 1.20.1, 1.20.2, 1.20.3, 1.20.4, 1.20.5, 1.20.6
-- Serie 1.21: 1.21.0, 1.21.1, 1.21.2, 1.21.3, 1.21.4, 1.21.5, 1.21.6, 1.21.7, 1.21.8
+#### Modern Versions (≥ 1.14.0)
+- 1.14 Series: 1.14.4
+- 1.15 Series: 1.15.2
+- 1.16 Series: 1.16.1, 1.16.2, 1.16.4, 1.16.5
+- 1.17 Series: 1.17.0, 1.17.1
+- 1.18 Series: 1.18.1, 1.18.2
+- 1.19 Series: 1.19.0, 1.19.1, 1.19.2, 1.19.3, 1.19.4
+- 1.20 Series: 1.20.0, 1.20.1, 1.20.2, 1.20.3, 1.20.4, 1.20.5, 1.20.6
+- 1.21 Series: 1.21.0, 1.21.1, 1.21.2, 1.21.3, 1.21.4, 1.21.5, 1.21.6, 1.21.7, 1.21.8
 
-## Análisis de Posibles Nuevas Versiones
+## Analysis of Potential New Versions
 
-### Versiones Futuras Potenciales
+### Potential Future Versions
 
-Basándose en el patrón de lanzamientos de Minecraft:
+Based on Minecraft release patterns:
 
-1. **Minecraft 1.21.9+** (código: `12109+`)
-   - Posibles parches adicionales de la serie 1.21
-   - Requeriría: Yarn mappings, Forge, NeoForge
+1. **Minecraft 1.21.9+** (code: `12109+`)
+   - Potential additional patches in the 1.21 series
+   - Would require: Yarn mappings, Forge, NeoForge
 
-2. **Minecraft 1.22.x** (código: `12200+`)
-   - Próxima versión menor de Minecraft
-   - Requeriría: Yarn mappings, Forge (si está disponible), NeoForge
-   - Posible cambio en requisitos de Java (actualmente Java 21 para ≥1.20.5)
+2. **Minecraft 1.22.x** (code: `12200+`)
+   - Next minor Minecraft version
+   - Would require: Yarn mappings, Forge (if available), NeoForge
+   - Potential change in Java requirements (currently Java 21 for ≥1.20.5)
 
-3. **Minecraft 1.23.x y posteriores** (código: `12300+`)
-   - Versiones futuras
-   - Podrían requerir actualizaciones significativas
+3. **Minecraft 1.23.x and beyond** (code: `12300+`)
+   - Future versions
+   - May require significant updates
 
-## Proceso para Agregar Soporte a una Nueva Versión
+## Process for Adding Support for a New Version
 
-### Archivo Principal: `src/main/kotlin/gg/essential/defaults/loom.gradle.kts`
+### Main File: `src/main/kotlin/gg/essential/defaults/loom.gradle.kts`
 
-Este archivo contiene todas las configuraciones de versiones en la estructura `Revision`.
+This file contains all version configurations in the `Revision` structure.
 
-### Pasos Necesarios
+### Required Steps
 
-#### 1. Verificar Disponibilidad de Dependencias
+#### 1. Verify Dependency Availability
 
-Antes de agregar soporte, verificar que existan:
+Before adding support, verify that the following exist:
 
-- **Yarn mappings** (para Fabric):
-  - Formato: `net.fabricmc:yarn:<version>+build.<build>:v2`
-  - Ejemplo: `1.21.8+build.1:v2`
-  - Fuente: https://maven.fabricmc.net/
+- **Yarn mappings** (for Fabric):
+  - Format: `net.fabricmc:yarn:<version>+build.<build>:v2`
+  - Example: `1.21.8+build.1:v2`
+  - Source: https://maven.fabricmc.net/
 
 - **Forge**:
-  - Formato: `net.minecraftforge:forge:<mcVersion>-<forgeVersion>`
-  - Ejemplo: `1.21.8-58.0.0`
-  - Fuente: https://files.minecraftforge.net/
+  - Format: `net.minecraftforge:forge:<mcVersion>-<forgeVersion>`
+  - Example: `1.21.8-58.0.0`
+  - Source: https://files.minecraftforge.net/
 
 - **NeoForge**:
-  - Formato: `net.neoforged:neoforge:<version>`
-  - Ejemplo: `21.8.5-beta`
-  - Fuente: https://maven.neoforged.net/
+  - Format: `net.neoforged:neoforge:<version>`
+  - Example: `21.8.5-beta`
+  - Source: https://maven.neoforged.net/
 
-#### 2. Actualizar loom.gradle.kts
+#### 2. Update loom.gradle.kts
 
-Agregar las nuevas versiones al **primer** `Revision` en el archivo:
+Add new versions to the **first** `Revision` in the file:
 
 ```kotlin
 revisions.add(Revision(
     yarn = mapOf(
-        // ... versiones existentes ...
-        12109 to "1.21.9+build.1:v2",  // Nueva versión
+        // ... existing versions ...
+        12109 to "1.21.9+build.1:v2",  // New version
     ),
     forge = mapOf(
-        // ... versiones existentes ...
-        12109 to "1.21.9-XX.X.X",  // Nueva versión
+        // ... existing versions ...
+        12109 to "1.21.9-XX.X.X",  // New version
     ),
     neoForge = mapOf(
-        // ... versiones existentes ...
-        12109 to "21.9.X-beta",  // Nueva versión
+        // ... existing versions ...
+        12109 to "21.9.X-beta",  // New version
     ),
-    // ... otros campos ...
+    // ... other fields ...
 ))
 ```
 
-#### 3. Actualizar Platform.kt (si es necesario)
+#### 3. Update Platform.kt (if necessary)
 
-Si la nueva versión requiere una versión diferente de Java, actualizar el método `javaVersion` en `Platform.kt`:
+If the new version requires a different Java version, update the `javaVersion` method in `Platform.kt`:
 
 ```kotlin
 val javaVersion = when {
-    mcVersion >= 12XXX -> JavaVersion.VERSION_XX  // Si hay cambios
+    mcVersion >= 12XXX -> JavaVersion.VERSION_XX  // If there are changes
     mcVersion >= 12005 -> JavaVersion.VERSION_21
     mcVersion >= 11800 -> JavaVersion.VERSION_17
     mcVersion >= 11700 -> JavaVersion.VERSION_16
@@ -139,126 +139,126 @@ val javaVersion = when {
 }
 ```
 
-#### 4. Incrementar Revisión
+#### 4. Increment Revision
 
-Si se modifican versiones existentes (no solo se agregan nuevas), crear una nueva revisión:
+If modifying existing versions (not just adding new ones), create a new revision:
 
 ```kotlin
 revisions.add(revisions.last().update(
-    // Solo las versiones que cambian
+    // Only the versions that change
 ))
 ```
 
-### Consideraciones Importantes
+### Important Considerations
 
-1. **Agregar al primer Revision**: Las versiones nuevas se agregan al primer `Revision` para que estén disponibles para todos los usuarios.
+1. **Add to first Revision**: New versions are added to the first `Revision` so they're available to all users.
 
-2. **Crear nueva Revision para cambios**: Solo crear una nueva revisión cuando se modifican entradas existentes, para mantener compatibilidad con usuarios en revisiones antiguas.
+2. **Create new Revision for changes**: Only create a new revision when modifying existing entries, to maintain compatibility with users on old revisions.
 
-3. **Fabric Loader**: La versión del fabric-loader (actualmente `0.13.3`) debe actualizarse si las nuevas versiones de Minecraft lo requieren.
+3. **Fabric Loader**: The fabric-loader version (currently `0.13.3`) should be updated if new Minecraft versions require it.
 
-4. **Mappings especiales**: 
-   - Forge moderno (≥1.17.0) usa mappings oficiales de Mojang
-   - Forge legacy usa MCP mappings
+4. **Special mappings**: 
+   - Modern Forge (≥1.17.0) uses official Mojang mappings
+   - Legacy Forge uses MCP mappings
 
-## Limitaciones y Restricciones
+## Limitations and Restrictions
 
-### Limitaciones Técnicas
+### Technical Limitations
 
-1. **Dependencia de ecosistema externo**:
-   - No se puede agregar soporte hasta que Yarn, Forge y/o NeoForge publiquen versiones compatibles
-   - Los tiempos de lanzamiento varían entre plataformas
+1. **External ecosystem dependency**:
+   - Cannot add support until Yarn, Forge, and/or NeoForge publish compatible versions
+   - Release times vary between platforms
 
 2. **Architectury Loom**:
-   - El toolkit depende de architectury-loom
-   - Nuevas versiones de Minecraft requieren que Loom las soporte primero
+   - The toolkit depends on architectury-loom
+   - New Minecraft versions require Loom to support them first
 
-3. **Requisitos de Java**:
-   - Versiones nuevas pueden requerir versiones más recientes de Java
-   - Esto afecta la compatibilidad con proyectos existentes
+3. **Java requirements**:
+   - New versions may require newer Java versions
+   - This affects compatibility with existing projects
 
-### Consideraciones de Mantenimiento
+### Maintenance Considerations
 
-1. **Versiones de prueba**:
-   - Snapshots y pre-releases generalmente no se agregan
-   - Solo versiones estables de lanzamiento
+1. **Test versions**:
+   - Snapshots and pre-releases are generally not added
+   - Only stable release versions
 
-2. **Actualización de dependencias**:
-   - Yarn mappings a veces recibe actualizaciones (mayor número de build)
-   - Forge puede publicar versiones parcheadas
-   - Estas actualizaciones pueden agregarse mediante nuevas revisiones
+2. **Dependency updates**:
+   - Yarn mappings sometimes receive updates (higher build number)
+   - Forge may publish patched versions
+   - These updates can be added through new revisions
 
-## Recomendaciones
+## Recommendations
 
-### Corto Plazo (Próximos 3 meses)
+### Short Term (Next 3 months)
 
-1. **Monitorear lanzamientos de Minecraft**:
-   - Minecraft 1.21.9 o superiores si se lanzan
-   - Actualizar tan pronto como Yarn/Forge/NeoForge estén disponibles
+1. **Monitor Minecraft releases**:
+   - Minecraft 1.21.9 or higher if released
+   - Update as soon as Yarn/Forge/NeoForge are available
 
-2. **Mantener actualizado Fabric Loader**:
-   - Revisar si hay versiones más recientes de fabric-loader
-   - Actualizar si es necesario para compatibilidad
+2. **Keep Fabric Loader updated**:
+   - Check for newer fabric-loader versions
+   - Update if necessary for compatibility
 
-### Mediano Plazo (3-6 meses)
+### Medium Term (3-6 months)
 
-1. **Prepararse para Minecraft 1.22**:
-   - Cuando se anuncie oficialmente
-   - Verificar cambios en requisitos de Java
-   - Actualizar Platform.kt si es necesario
+1. **Prepare for Minecraft 1.22**:
+   - When officially announced
+   - Verify changes in Java requirements
+   - Update Platform.kt if necessary
 
-2. **Revisar versiones obsoletas**:
-   - Considerar deprecar soporte para versiones muy antiguas si es necesario
-   - Documentar cualquier cambio de política de soporte
+2. **Review obsolete versions**:
+   - Consider deprecating support for very old versions if needed
+   - Document any support policy changes
 
-### Largo Plazo (6+ meses)
+### Long Term (6+ months)
 
-1. **Automatización**:
-   - Considerar scripts para verificar automáticamente nuevas versiones de dependencias
-   - Automatizar parte del proceso de actualización si es recurrente
+1. **Automation**:
+   - Consider scripts to automatically check for new dependency versions
+   - Automate part of the update process if recurring
 
-2. **Documentación**:
-   - Mantener este documento actualizado
-   - Documentar cualquier cambio en el proceso
+2. **Documentation**:
+   - Keep this document updated
+   - Document any changes in the process
 
-## Procedimiento de Actualización Propuesto
+## Proposed Update Procedure
 
-### Checklist para Agregar una Nueva Versión
+### Checklist for Adding a New Version
 
-- [ ] Verificar que Minecraft ha lanzado la nueva versión
-- [ ] Esperar a que Yarn publique mappings (usualmente 1-2 días después)
-- [ ] Esperar a que Forge publique una versión compatible (varía)
-- [ ] Esperar a que NeoForge publique una versión compatible (varía)
-- [ ] Calcular el código de versión (mcMajor * 10000 + mcMinor * 100 + mcPatch)
-- [ ] Actualizar `loom.gradle.kts` con las nuevas entradas en el mapa
-- [ ] Verificar si se necesita actualizar `Platform.kt` (requisitos de Java)
-- [ ] Verificar si se necesita actualizar fabric-loader
-- [ ] Probar la compilación con la nueva versión
-- [ ] Incrementar la versión del toolkit
-- [ ] Actualizar CHANGELOG (si existe)
-- [ ] Crear commit y PR
+- [ ] Verify that Minecraft has released the new version
+- [ ] Wait for Yarn to publish mappings (usually 1-2 days later)
+- [ ] Wait for Forge to publish a compatible version (varies)
+- [ ] Wait for NeoForge to publish a compatible version (varies)
+- [ ] Calculate version code (mcMajor * 10000 + mcMinor * 100 + mcPatch)
+- [ ] Update `loom.gradle.kts` with new entries in the map
+- [ ] Verify if `Platform.kt` needs updating (Java requirements)
+- [ ] Verify if fabric-loader needs updating
+- [ ] Test build with the new version
+- [ ] Increment toolkit version
+- [ ] Update CHANGELOG (if exists)
+- [ ] Create commit and PR
 
-## Archivos Clave
+## Key Files
 
 1. **`src/main/kotlin/gg/essential/defaults/loom.gradle.kts`**
-   - Definiciones de todas las versiones soportadas
+   - Definitions of all supported versions
    - Mappings, Forge, NeoForge, Fabric Loader
 
 2. **`src/main/kotlin/gg/essential/gradle/multiversion/Platform.kt`**
-   - Lógica de detección de versión
-   - Requisitos de Java por versión
-   - Detección de loader
+   - Version detection logic
+   - Java requirements per version
+   - Loader detection
 
 3. **`build.gradle.kts`**
-   - Versión del toolkit
-   - Dependencias del propio toolkit
+   - Toolkit version
+   - Toolkit's own dependencies
 
-## Conclusión
+## Conclusion
 
-El Essential Gradle Toolkit actualmente soporta hasta **Minecraft 1.21.8** con un sistema bien estructurado y mantenible. Agregar soporte para nuevas versiones es un proceso directo que principalmente requiere:
+The Essential Gradle Toolkit currently supports up to **Minecraft 1.21.8** with a well-structured and maintainable system. Adding support for new versions is a straightforward process that mainly requires:
 
-1. Esperar a que las dependencias externas (Yarn, Forge, NeoForge) estén disponibles
-2. Actualizar los mapas de versiones en `loom.gradle.kts`
-3. Verificar requisitos de Java si es necesario
+1. Waiting for external dependencies (Yarn, Forge, NeoForge) to be available
+2. Updating the version maps in `loom.gradle.kts`
+3. Verifying Java requirements if necessary
 
-El sistema de revisiones permite mantener compatibilidad hacia atrás mientras se agregan nuevas funcionalidades, haciendo que el mantenimiento sea sostenible a largo plazo.
+The revision system maintains backward compatibility while adding new functionality, making maintenance sustainable in the long term.
